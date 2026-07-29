@@ -355,7 +355,7 @@
         }
 
         .ad-sidebar-skyscraper {
-            width: 160px;
+            width: 300px;
             padding: 0;
             height: auto;
             min-height: 600px;
@@ -364,7 +364,7 @@
         }
 
         .ad-sidebar-skyscraper .ad-box {
-            width: 160px;
+            width: 300px;
             height: 600px;
             border: 1px solid var(--border-color);
         }
@@ -390,18 +390,10 @@
             padding: 1.5rem 1rem 3rem 1rem;
             width: 100%;
             display: grid;
-            grid-template-columns: 160px 1fr 160px;
+            grid-template-columns: 300px 1fr 300px;
             gap: 1.25rem;
             flex: 1;
             box-sizing: border-box;
-        }
-
-        @media (max-width: 1440px) {
-            .keyboard-wrapper {
-                zoom: 0.85;
-                -moz-transform: scale(0.85);
-                -moz-transform-origin: top center;
-            }
         }
 
         @media (max-width: 1100px) {
@@ -412,6 +404,15 @@
 
             .left-sidebar, aside {
                 display: none;
+            }
+
+            .keyboard-grid {
+                zoom: 1;
+                transform: none !important;
+            }
+
+            .keyboard-wrapper {
+                height: auto !important;
             }
 
             .ad-top-banner .ad-box {
@@ -660,10 +661,13 @@
             border-radius: 16px;
             padding: 1.75rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow-x: auto;
+            overflow: hidden;
             margin-bottom: 2rem;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .keyboard-grid {
@@ -673,6 +677,7 @@
             min-width: 1000px;
             margin: 0 auto;
             align-items: flex-start;
+            transform-origin: top center;
         }
 
         .kb-row {
@@ -2130,8 +2135,33 @@ Tested with KeyHealth (Diagnose Your Keyboard Health)`;
             DOM.soundToggleBtn.querySelector('#sound-icon').textContent = state.soundEnabled ? '🔊' : '🔇';
         });
 
+        function resizeKeyboard() {
+            const wrapper = DOM.keyboardGrid.parentElement;
+            const grid = DOM.keyboardGrid;
+            if (!wrapper || !grid) return;
+            
+            const nativeWidth = 1000;
+            const style = window.getComputedStyle(wrapper);
+            const paddingLeft = parseFloat(style.paddingLeft) || 0;
+            const paddingRight = parseFloat(style.paddingRight) || 0;
+            const availableWidth = wrapper.clientWidth - paddingLeft - paddingRight;
+            
+            if (availableWidth > 0 && availableWidth < nativeWidth) {
+                const scale = availableWidth / nativeWidth;
+                grid.style.transform = `scale(${scale})`;
+                
+                const rect = grid.getBoundingClientRect();
+                wrapper.style.height = `${rect.height + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)}px`;
+            } else {
+                grid.style.transform = 'none';
+                wrapper.style.height = 'auto';
+            }
+        }
+        
+        window.addEventListener('resize', resizeKeyboard);
+
         DOM.layoutSelect.addEventListener('change', (e) => {
-            state.layout = e.target.value; renderKeyboard();
+            state.layout = e.target.value; renderKeyboard(); resizeKeyboard();
         });
 
         window.addEventListener('keydown', handleKeyDown);
@@ -2144,6 +2174,7 @@ Tested with KeyHealth (Diagnose Your Keyboard Health)`;
         }
 
         renderKeyboard();
+        resizeKeyboard();
         renderGamingCombos();
         updateUI();
         checkUrlHashReport();
