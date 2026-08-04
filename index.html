@@ -357,6 +357,13 @@
             border: 1px solid var(--border-color);
         }
 
+        .left-sidebar,
+        .right-sidebar {
+            position: sticky;
+            top: 5rem;
+            align-self: start;
+        }
+
         .ad-sidebar-skyscraper {
             width: 300px;
             padding: 0;
@@ -364,6 +371,13 @@
             min-height: 600px;
             border: none;
             background: transparent;
+        }
+
+        .ad-sidebar-skyscraper .adsbygoogle {
+            display: block;
+            width: 100%;
+            min-width: 160px;
+            min-height: 600px;
         }
 
         .ad-sidebar-skyscraper .ad-box {
@@ -1273,10 +1287,17 @@
         <!-- Left Column Sidebar Skyscraper Ad -->
         <aside class="left-sidebar">
             <div class="ad-container ad-sidebar-skyscraper" id="ad-sidebar-left">
-                <div class="ad-disclaimer">Ad • KeyHealth</div>
-                <div class="ad-box">
-                    <span>Skyscraper Banner<br>(160×600 / 300×600)</span>
-                </div>
+                <div class="ad-disclaimer">Advertisement</div>
+                <!-- key-helth test vertical LR -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3996858089273040"
+                     data-ad-slot="6679399460"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </aside>
 
@@ -1489,12 +1510,19 @@
         </main>
 
         <!-- Right Column Sidebar Skyscraper Ad -->
-        <aside>
-            <div class="ad-container ad-sidebar-skyscraper" id="ad-sidebar">
-                <div class="ad-disclaimer">Ad • KeyHealth</div>
-                <div class="ad-box">
-                    <span>Skyscraper Banner<br>(160×600 / 300×600)</span>
-                </div>
+        <aside class="right-sidebar">
+            <div class="ad-container ad-sidebar-skyscraper" id="ad-sidebar-right">
+                <div class="ad-disclaimer">Advertisement</div>
+                <!-- key-helth test vertical LR -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3996858089273040"
+                     data-ad-slot="6679399460"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </aside>
     </div>
