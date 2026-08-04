@@ -296,18 +296,18 @@
             transform: translateY(-1px);
         }
 
-        /* Layout Grid Wrapper with Left and Right Skyscraper Banners */
+        /* Full Width Edge-to-Edge Layout with Left and Right Skyscraper Banners */
         .main-wrapper {
             max-width: 100%;
-            margin: 0 auto;
-            padding: 1.5rem 1rem 3rem 1rem;
             width: 100%;
+            margin: 0;
+            padding: 1.25rem 1.25rem 3rem 1.25rem;
             display: grid;
-            grid-template-columns: 160px 1fr 160px;
+            grid-template-columns: 160px minmax(0, 1fr) 160px;
             gap: 1.25rem;
             flex: 1;
             box-sizing: border-box;
-            justify-content: center;
+            align-items: start;
         }
 
         .left-sidebar,
@@ -317,7 +317,9 @@
             top: 5rem;
             align-self: start;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         .ad-skyscraper {
@@ -341,11 +343,11 @@
         main {
             min-width: 0;
             width: 100%;
-            max-width: 1100px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
-        @media (max-width: 1360px) {
+        @media (max-width: 1200px) {
             .main-wrapper {
                 grid-template-columns: 1fr;
                 padding: 1rem 0.75rem;
@@ -354,15 +356,6 @@
             .left-sidebar,
             .right-sidebar {
                 display: none;
-            }
-
-            .keyboard-grid {
-                zoom: 1;
-                transform: none !important;
-            }
-
-            .keyboard-wrapper {
-                height: auto !important;
             }
 
             header {
@@ -603,23 +596,62 @@
         .keyboard-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.75rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 18px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
             margin-bottom: 2rem;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
+            width: 100%;
+            box-sizing: border-box;
+            gap: 1.25rem;
+        }
+
+        .kb-telemetry-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1254px;
+            padding: 0 0.25rem;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .kb-telemetry-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--bg-card-solid);
+            padding: 0.4rem 0.85rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .kb-telemetry-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
         }
 
         .keyboard-grid {
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
-            min-width: 1000px;
+            gap: 6px;
+            width: max-content;
             margin: 0 auto;
             align-items: flex-start;
             transform-origin: top center;
@@ -627,12 +659,12 @@
 
         .kb-row {
             display: flex;
-            gap: 0.4rem;
+            gap: 6px;
             width: max-content;
         }
 
         .kb-gap {
-            width: 1.1rem;
+            width: 20px;
         }
 
         /* Tactile Mechanical Keys - Premium Look */
@@ -641,7 +673,7 @@
             border: 1px solid var(--key-border);
             box-shadow: var(--key-shadow);
             color: var(--key-text);
-            border-radius: 6px;
+            border-radius: 7px;
             height: 52px;
             display: flex;
             flex-direction: column;
@@ -649,13 +681,14 @@
             justify-content: center;
             font-family: var(--font-head);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             position: relative;
             transition: transform 0.05s ease, box-shadow 0.05s ease, background 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
             flex-grow: 0;
             flex-shrink: 0;
             padding: 2px;
+            box-sizing: border-box;
         }
 
         .key .primary-label {
@@ -663,7 +696,7 @@
         }
 
         .key .sub-label {
-            font-size: 0.65rem;
+            font-size: 0.66rem;
             color: var(--key-subtext);
             margin-top: 1px;
         }
@@ -722,7 +755,7 @@
             }
         }
 
-        /* Key Widths */
+        /* Key Width Units */
         .w-1u {
             width: 50px;
         }
@@ -752,11 +785,11 @@
         }
 
         .w-6-25u {
-            width: 346px;
+            width: 344px;
         }
 
         .key-sm {
-            font-size: 0.74rem;
+            font-size: 0.76rem;
         }
 
         /* Test Mode Panels */
@@ -1271,6 +1304,11 @@
 
             <!-- Keyboard Board Visualizer -->
             <div class="keyboard-wrapper">
+                <div class="kb-telemetry-bar">
+                    <div class="kb-telemetry-badge"><span class="dot"></span> Active Matrix • 1000Hz USB Polling</div>
+                    <div class="kb-telemetry-badge"><span class="dot" style="background:#6366f1;box-shadow:0 0 8px #6366f1;"></span> Anti-Ghosting NKRO Engine</div>
+                    <div class="kb-telemetry-badge"><span class="dot" style="background:#06b6d4;box-shadow:0 0 8px #06b6d4;"></span> Ultra-Low Jitter Precision</div>
+                </div>
                 <div class="keyboard-grid" id="keyboard-grid"></div>
             </div>
 
@@ -1492,13 +1530,13 @@
         const KEYBOARD_LAYOUTS = {
             ANSI: [
                 [
-                    { code: 'Escape', label: 'Esc', class: 'w-1u key-sm' }, { gap: true, width: '31px' },
+                    { code: 'Escape', label: 'Esc', class: 'w-1u key-sm' }, { gap: true, width: '32px' },
                     { code: 'F1', label: 'F1', class: 'w-1u key-sm' }, { code: 'F2', label: 'F2', class: 'w-1u key-sm' },
-                    { code: 'F3', label: 'F3', class: 'w-1u key-sm' }, { code: 'F4', label: 'F4', class: 'w-1u key-sm' }, { gap: true, width: '31px' },
+                    { code: 'F3', label: 'F3', class: 'w-1u key-sm' }, { code: 'F4', label: 'F4', class: 'w-1u key-sm' }, { gap: true, width: '28px' },
                     { code: 'F5', label: 'F5', class: 'w-1u key-sm' }, { code: 'F6', label: 'F6', class: 'w-1u key-sm' },
-                    { code: 'F7', label: 'F7', class: 'w-1u key-sm' }, { code: 'F8', label: 'F8', class: 'w-1u key-sm' }, { gap: true, width: '31px' },
+                    { code: 'F7', label: 'F7', class: 'w-1u key-sm' }, { code: 'F8', label: 'F8', class: 'w-1u key-sm' }, { gap: true, width: '28px' },
                     { code: 'F9', label: 'F9', class: 'w-1u key-sm' }, { code: 'F10', label: 'F10', class: 'w-1u key-sm' },
-                    { code: 'F11', label: 'F11', class: 'w-1u key-sm' }, { code: 'F12', label: 'F12', class: 'w-1u key-sm' }, { gap: true },
+                    { code: 'F11', label: 'F11', class: 'w-1u key-sm' }, { code: 'F12', label: 'F12', class: 'w-1u key-sm' }, { gap: true, width: '62px' },
                     { code: 'PrintScreen', label: 'PrtSc', class: 'w-1u key-sm' }, { code: 'ScrollLock', label: 'ScrLk', class: 'w-1u key-sm' }, { code: 'Pause', label: 'Pause', class: 'w-1u key-sm' }
                 ],
                 [
@@ -1508,9 +1546,9 @@
                     { code: 'Digit6', label: '6', sub: '^', class: 'w-1u' }, { code: 'Digit7', label: '7', sub: '&', class: 'w-1u' },
                     { code: 'Digit8', label: '8', sub: '*', class: 'w-1u' }, { code: 'Digit9', label: '9', sub: '(', class: 'w-1u' },
                     { code: 'Digit0', label: '0', sub: ')', class: 'w-1u' }, { code: 'Minus', label: '-', sub: '_', class: 'w-1u' },
-                    { code: 'Equal', label: '=', sub: '+', class: 'w-1u' }, { code: 'Backspace', label: 'Backspace', class: 'w-2u key-sm' }, { gap: true },
+                    { code: 'Equal', label: '=', sub: '+', class: 'w-1u' }, { code: 'Backspace', label: 'Backspace', class: 'w-2u key-sm' }, { gap: true, width: '20px' },
                     { code: 'Insert', label: 'Ins', class: 'w-1u key-sm' }, { code: 'Home', label: 'Home', class: 'w-1u key-sm' },
-                    { code: 'PageUp', label: 'PgUp', class: 'w-1u key-sm' }, { gap: true },
+                    { code: 'PageUp', label: 'PgUp', class: 'w-1u key-sm' }, { gap: true, width: '20px' },
                     { code: 'NumLock', label: 'Num', class: 'w-1u key-sm' }, { code: 'NumpadDivide', label: '/', class: 'w-1u' },
                     { code: 'NumpadMultiply', label: '*', class: 'w-1u' }, { code: 'NumpadSubtract', label: '-', class: 'w-1u' }
                 ],
@@ -1521,9 +1559,9 @@
                     { code: 'KeyY', label: 'Y', class: 'w-1u' }, { code: 'KeyU', label: 'U', class: 'w-1u' },
                     { code: 'KeyI', label: 'I', class: 'w-1u' }, { code: 'KeyO', label: 'O', class: 'w-1u' },
                     { code: 'KeyP', label: 'P', class: 'w-1u' }, { code: 'BracketLeft', label: '[', sub: '{', class: 'w-1u' },
-                    { code: 'BracketRight', label: ']', sub: '}', class: 'w-1u' }, { code: 'Backslash', label: '\\', sub: '|', class: 'w-1-5u' }, { gap: true },
+                    { code: 'BracketRight', label: ']', sub: '}', class: 'w-1u' }, { code: 'Backslash', label: '\\', sub: '|', class: 'w-1-5u' }, { gap: true, width: '20px' },
                     { code: 'Delete', label: 'Del', class: 'w-1u key-sm' }, { code: 'End', label: 'End', class: 'w-1u key-sm' },
-                    { code: 'PageDown', label: 'PgDn', class: 'w-1u key-sm' }, { gap: true },
+                    { code: 'PageDown', label: 'PgDn', class: 'w-1u key-sm' }, { gap: true, width: '20px' },
                     { code: 'Numpad7', label: '7', class: 'w-1u' }, { code: 'Numpad8', label: '8', class: 'w-1u' },
                     { code: 'Numpad9', label: '9', class: 'w-1u' }, { code: 'NumpadAdd', label: '+', class: 'w-1u' }
                 ],
@@ -1534,8 +1572,9 @@
                     { code: 'KeyH', label: 'H', class: 'w-1u' }, { code: 'KeyJ', label: 'J', class: 'w-1u' },
                     { code: 'KeyK', label: 'K', class: 'w-1u' }, { code: 'KeyL', label: 'L', class: 'w-1u' },
                     { code: 'Semicolon', label: ';', sub: ':', class: 'w-1u' }, { code: 'Quote', label: '\'', sub: '"', class: 'w-1u' },
-                    { code: 'Enter', label: 'Enter', class: 'w-2-25u key-sm' }, { gap: true, width: '210.8px' },
-                    { code: 'Numpad4', label: '4', class: 'w-1u' }, { code: 'Numpad5', label: '5', class: 'w-1u' }, { code: 'Numpad6', label: '6', class: 'w-1u' }
+                    { code: 'Enter', label: 'Enter', class: 'w-2-25u key-sm' }, { gap: true, width: '202px' },
+                    { code: 'Numpad4', label: '4', class: 'w-1u' }, { code: 'Numpad5', label: '5', class: 'w-1u' },
+                    { code: 'Numpad6', label: '6', class: 'w-1u' }, { code: 'NumpadAdd', label: '+', class: 'w-1u' }
                 ],
                 [
                     { code: 'ShiftLeft', label: 'Shift', class: 'w-2-25u key-sm' }, { code: 'KeyZ', label: 'Z', class: 'w-1u' },
@@ -1543,8 +1582,8 @@
                     { code: 'KeyV', label: 'V', class: 'w-1u' }, { code: 'KeyB', label: 'B', class: 'w-1u' },
                     { code: 'KeyN', label: 'N', class: 'w-1u' }, { code: 'KeyM', label: 'M', class: 'w-1u' },
                     { code: 'Comma', label: ',', sub: '<', class: 'w-1u' }, { code: 'Period', label: '.', sub: '>', class: 'w-1u' },
-                    { code: 'Slash', label: '/', sub: '?', class: 'w-1u' }, { code: 'ShiftRight', label: 'Shift', class: 'w-2-75u key-sm' }, { gap: true, width: '74px' },
-                    { code: 'ArrowUp', label: '▲', class: 'w-1u' }, { gap: true, width: '74px' },
+                    { code: 'Slash', label: '/', sub: '?', class: 'w-1u' }, { code: 'ShiftRight', label: 'Shift', class: 'w-2-75u key-sm' }, { gap: true, width: '76px' },
+                    { code: 'ArrowUp', label: '▲', class: 'w-1u' }, { gap: true, width: '76px' },
                     { code: 'Numpad1', label: '1', class: 'w-1u' }, { code: 'Numpad2', label: '2', class: 'w-1u' },
                     { code: 'Numpad3', label: '3', class: 'w-1u' }, { code: 'NumpadEnter', label: 'Enter', class: 'w-1u key-sm' }
                 ],
@@ -1552,10 +1591,11 @@
                     { code: 'ControlLeft', label: 'Ctrl', class: 'w-1-25u key-sm' }, { code: 'MetaLeft', label: 'Win', class: 'w-1-25u key-sm' },
                     { code: 'AltLeft', label: 'Alt', class: 'w-1-25u key-sm' }, { code: 'Space', label: 'Spacebar', class: 'w-6-25u key-sm' },
                     { code: 'AltRight', label: 'Alt', class: 'w-1-25u key-sm' }, { code: 'MetaRight', label: 'Win', class: 'w-1-25u key-sm' },
-                    { code: 'ContextMenu', label: 'Menu', class: 'w-1-25u key-sm' }, { code: 'ControlRight', label: 'Ctrl', class: 'w-1-25u key-sm' }, { gap: true },
+                    { code: 'ContextMenu', label: 'Menu', class: 'w-1-25u key-sm' }, { code: 'ControlRight', label: 'Ctrl', class: 'w-1-25u key-sm' }, { gap: true, width: '20px' },
                     { code: 'ArrowLeft', label: '◀', class: 'w-1u' }, { code: 'ArrowDown', label: '▼', class: 'w-1u' },
-                    { code: 'ArrowRight', label: '▶', class: 'w-1u' }, { gap: true },
-                    { code: 'Numpad0', label: '0', class: 'w-2u' }, { code: 'NumpadDecimal', label: '.', class: 'w-1u' }
+                    { code: 'ArrowRight', label: '▶', class: 'w-1u' }, { gap: true, width: '20px' },
+                    { code: 'Numpad0', label: '0', class: 'w-2u' }, { code: 'NumpadDecimal', label: '.', class: 'w-1u' },
+                    { code: 'NumpadEnter', label: 'Enter', class: 'w-1u key-sm' }
                 ]
             ]
         };
@@ -2083,18 +2123,21 @@ Tested with KeyHealth (Diagnose Your Keyboard Health)`;
             const grid = DOM.keyboardGrid;
             if (!wrapper || !grid) return;
             
-            const nativeWidth = 1000;
+            grid.style.transform = 'none';
             const style = window.getComputedStyle(wrapper);
-            const paddingLeft = parseFloat(style.paddingLeft) || 0;
-            const paddingRight = parseFloat(style.paddingRight) || 0;
-            const availableWidth = wrapper.clientWidth - paddingLeft - paddingRight;
+            const paddingX = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+            const availableWidth = wrapper.clientWidth - paddingX;
+            const gridWidth = grid.scrollWidth || 1254;
             
-            if (availableWidth > 0 && availableWidth < nativeWidth) {
-                const scale = availableWidth / nativeWidth;
+            if (availableWidth > 0 && availableWidth < gridWidth) {
+                const scale = availableWidth / gridWidth;
                 grid.style.transform = `scale(${scale})`;
-                
-                const rect = grid.getBoundingClientRect();
-                wrapper.style.height = `${rect.height + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)}px`;
+                const unscaledHeight = grid.scrollHeight;
+                const telemetryBar = wrapper.querySelector('.kb-telemetry-bar');
+                const telemetryHeight = telemetryBar ? (telemetryBar.offsetHeight + 20) : 0;
+                const paddingTop = parseFloat(style.paddingTop) || 0;
+                const paddingBottom = parseFloat(style.paddingBottom) || 0;
+                wrapper.style.height = `${(unscaledHeight * scale) + paddingTop + paddingBottom + telemetryHeight}px`;
             } else {
                 grid.style.transform = 'none';
                 wrapper.style.height = 'auto';
