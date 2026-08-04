@@ -1188,10 +1188,74 @@
             color: var(--primary);
             border-bottom-color: var(--primary);
         }
+
+        /* Mobile Overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-base);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .mobile-overlay h2 {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mobile-overlay p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-overlay .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-overlay {
+                display: flex;
+            }
+            body > *:not(.mobile-overlay) {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- Mobile Notice Overlay -->
+    <div class="mobile-overlay">
+        <div class="icon">💻</div>
+        <h2>Desktop Exclusive</h2>
+        <p>KeyHealth is a professional diagnostic suite designed for physical keyboards. Please visit us on a desktop or laptop computer for the best experience.</p>
+    </div>
 
     <!-- Shared Report Notification Banner with CTA -->
     <div id="shared-banner" class="shared-report-banner">
