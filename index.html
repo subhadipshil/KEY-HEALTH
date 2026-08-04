@@ -2,8 +2,6 @@
 <html lang="en" data-theme="dark">
 
 <head>
-    <!-- Multitag -->
-    <script src="https://quge5.com/88/tag.min.js" data-zone="266709" async data-cfasync="false"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KeyHealth - Professional Keyboard Health & Diagnostic Suite</title>
@@ -19,9 +17,6 @@
 
     <!-- jsPDF CDN for PDF Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3996858089273040" crossorigin="anonymous"></script>
 
     <style>
         :root {
@@ -63,10 +58,6 @@
             --primary: #6366f1;
             --primary-hover: #4f46e5;
             --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-
-            /* Ad Container Styles */
-            --ad-bg: rgba(24, 24, 27, 0.4);
-            --ad-border: #27272a;
         }
 
         [data-theme="light"] {
@@ -88,9 +79,6 @@
             --key-shadow: 0 4px 0 #d4d4d8, 0 8px 16px rgba(0, 0, 0, 0.06);
             --key-text: #09090b;
             --key-subtext: #71717a;
-
-            --ad-bg: rgba(255, 255, 255, 0.5);
-            --ad-border: #e4e4e7;
         }
 
         * {
@@ -308,121 +296,22 @@
             transform: translateY(-1px);
         }
 
-        /* AdSense Containers */
-        .ad-container {
+        /* Layout Grid Wrapper */
+        .main-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 3rem 1.25rem;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: var(--ad-bg);
-            border: 1px solid var(--ad-border);
-            border-radius: 12px;
-            padding: 0.5rem;
-            margin: 0.75rem auto;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .ad-disclaimer {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        .ad-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-card-solid);
-            border-radius: 8px;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .ad-top-banner {
-            max-width: 728px;
-            padding: 0;
-            border: none;
-            background: transparent;
-        }
-
-        .ad-top-banner .ad-box {
-            width: 728px;
-            height: 90px;
-            max-width: 100%;
-            border: 1px solid var(--border-color);
-        }
-
-        .left-sidebar,
-        .right-sidebar {
-            position: sticky;
-            top: 5rem;
-            align-self: start;
-        }
-
-        .ad-sidebar-skyscraper {
-            width: 300px;
-            padding: 0;
-            height: auto;
-            min-height: 600px;
-            border: none;
-            background: transparent;
-        }
-
-        .ad-sidebar-skyscraper .adsbygoogle {
-            display: block;
-            width: 100%;
-            min-width: 160px;
-            min-height: 600px;
-        }
-
-        .ad-sidebar-skyscraper .ad-box {
-            width: 300px;
-            height: 600px;
-            border: 1px solid var(--border-color);
-        }
-
-        .ad-native-card {
-            max-width: 300px;
-            padding: 0;
-            margin: 1rem auto;
-            border: none;
-            background: transparent;
-        }
-
-        .ad-native-card .ad-box {
-            width: 300px;
-            height: 250px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Layout Grid Wrapper */
-        .main-wrapper {
-            max-width: 100%;
-            margin: 0;
-            padding: 1.5rem 1rem 3rem 1rem;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 300px 1fr 300px;
-            gap: 1.25rem;
             flex: 1;
             box-sizing: border-box;
         }
 
         @media (max-width: 1100px) {
             .main-wrapper {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-
-            .left-sidebar, aside {
-                display: none;
+                padding: 1rem 0.75rem;
             }
 
             .keyboard-grid {
@@ -432,11 +321,6 @@
 
             .keyboard-wrapper {
                 height: auto !important;
-            }
-
-            .ad-top-banner .ad-box {
-                width: 320px;
-                height: 100px;
             }
 
             header {
@@ -1276,33 +1160,8 @@
         </div>
     </header>
 
-    <!-- Top Banner Ad Placeholder -->
-    <div class="ad-container ad-top-banner" id="ad-top">
-        <div class="ad-disclaimer">Ad • This helps keep KeyHealth free</div>
-        <div class="ad-box">
-            <span>Google AdSense Slot (728×90 / 320×100 Responsive)</span>
-        </div>
-    </div>
-
     <!-- Main Container -->
     <div class="main-wrapper">
-        <!-- Left Column Sidebar Skyscraper Ad -->
-        <aside class="left-sidebar">
-            <div class="ad-container ad-sidebar-skyscraper" id="ad-sidebar-left">
-                <div class="ad-disclaimer">Advertisement</div>
-                <!-- key-helth test vertical LR -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3996858089273040"
-                     data-ad-slot="6679399460"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </aside>
-
         <main>
             <!-- Toolbar & Status Bar -->
             <div class="toolbar-bar">
@@ -1479,14 +1338,6 @@
                     </div>
                 </div>
 
-                <!-- Native Ad Card -->
-                <div class="ad-container ad-native-card" id="ad-native">
-                    <div class="ad-disclaimer">Ad • This helps keep KeyHealth free</div>
-                    <div class="ad-box">
-                        <span>Native Ad Placement (300×250)</span>
-                    </div>
-                </div>
-
                 <!-- Issues Table -->
                 <div class="table-wrapper">
                     <table class="issues-table">
@@ -1510,23 +1361,6 @@
                 </div>
             </section>
         </main>
-
-        <!-- Right Column Sidebar Skyscraper Ad -->
-        <aside class="right-sidebar">
-            <div class="ad-container ad-sidebar-skyscraper" id="ad-sidebar-right">
-                <div class="ad-disclaimer">Advertisement</div>
-                <!-- key-helth test vertical LR -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3996858089273040"
-                     data-ad-slot="6679399460"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </aside>
     </div>
 
     <!-- Missing Key Handling Modal -->
